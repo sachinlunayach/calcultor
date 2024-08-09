@@ -1,24 +1,22 @@
-let screen = document.getElementById("screen");
-let button = document.querySelectorAll("button");
-let screenValue = "";
-for ( items of button) {
-    items.addEventListener("click",(e)=>{
-        buttontext = e.target.innerText;
-        // console.log("this is your result",buttontext)
-        if (buttontext == "X") {
-            buttontext = "*"
-            screenValue += buttontext;
-          screen.value =  screenValue;   
-        }else if(buttontext == "C"){
-            screenValue = "";
-            screen.value =  screenValue;   
-          }else if(buttontext == "="){
-         screen.value = eval(screenValue)
-         }else{
-            screenValue += buttontext;
-            screen.value =  screenValue; 
-         }
-         
-    })
+function clearDisplay() {
+  document.getElementById('result').value = '';
+}
 
+function deleteLast() {
+  const display = document.getElementById('result');
+  display.value = display.value.slice(0, -1);
+}
+
+function appendToDisplay(value) {
+  const display = document.getElementById('result');
+  display.value += value;
+}
+
+function calculateResult() {
+  const display = document.getElementById('result');
+  try {
+      display.value = eval(display.value) || "";
+  } catch (error) {
+      display.value = "Error";
+  }
 }
